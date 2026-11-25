@@ -10,11 +10,11 @@
 
   <!--
     action = where the form data is sent (a fake address, because we have no backend)
-  method = "post" sends data privately. "get" would show it in the web address.
+    method = "post" sends data privately. "get" would show it in the web address.
   -->
   <form action="https://example.com/apply" method="post">
 
-    <!-- GROUP 1: Personal information -->
+    <!-- ===== GROUP 1: Personal information ===== -->
     <fieldset>
       <legend>Personal information</legend>
 
@@ -36,6 +36,8 @@
 
       <p>
         <label for="dob">Date of birth:</label><br>
+        <!-- This line tells the applicant why some dates are blocked -->
+        <small>You must be 18 or older to apply.</small><br>
         <input type="date" id="dob" name="date_of_birth" required min="1940-01-01" max="2008-11-24">
       </p>
 
@@ -48,15 +50,12 @@
 
         <input type="radio" id="gender-male" name="gender" value="male">
         <label for="gender-male">Male</label><br>
-
-        <input type="radio" id="gender-none" name="gender" value="prefer-not-to-say">
-        <label for="gender-none">Prefer not to say</label>
       </fieldset>
     </fieldset>
 
     <br>
 
-    <!-- GROUP 2: Development information -->
+    <!-- ===== GROUP 2: Development information ===== -->
     <fieldset>
       <legend>Development information</legend>
 
@@ -112,14 +111,32 @@
 
     <br>
 
-    <!-- GROUP 3: Other -->
+    <!-- ===== GROUP 3: Availability ===== -->
     <fieldset>
-      <legend>Other</legend>
+      <legend>Availability</legend>
 
       <p>
         <label for="hours">Hours per week you can give (2 to 40):</label><br>
         <input type="number" id="hours" name="hours_per_week" required min="2" max="40">
       </p>
+
+      <!-- A fieldset inside a fieldset groups the related checkboxes -->
+      <fieldset>
+        <legend>Times you are usually free</legend>
+
+        <input type="checkbox" id="time-weekday" name="free_times" value="weekday-evening">
+        <label for="time-weekday">Weekday evenings</label><br>
+
+        <input type="checkbox" id="time-weekend" name="free_times" value="weekend">
+        <label for="time-weekend">Weekends</label>
+      </fieldset>
+    </fieldset>
+
+    <br>
+
+    <!-- ===== GROUP 4: Agreement ===== -->
+    <fieldset>
+      <legend>Mentorship rules</legend>
 
       <input type="checkbox" id="agree" name="agree_to_rules" value="agreed" required>
       <label for="agree">I agree to the mentorship rules</label>
