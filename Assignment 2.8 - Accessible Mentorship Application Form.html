@@ -2,152 +2,163 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mentorship Application</title>
 </head>
 <body>
+  <main>
+    <h1>Mentorship Application</h1>
+    <p>Fields marked required must be filled in.</p>
 
-  <h1>Mentorship Application</h1>
-
-  <!--
-    action = where the form data is sent (a fake address, because we have no backend)
-    method = "post" sends data privately. "get" would show it in the web address.
-  -->
-  <form action="https://example.com/apply" method="post">
-
-    <!-- ===== GROUP 1: Personal information ===== -->
-    <fieldset>
-      <legend>Personal information</legend>
-
-      <!-- label "for" must match the input "id" -->
-      <p>
-        <label for="full-name">Full name:</label><br>
-        <input type="text" id="full-name" name="full_name" required minlength="2" maxlength="100">
-      </p>
-
-      <p>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required>
-      </p>
-
-      <p>
-        <label for="phone">Phone (optional):</label><br>
-        <input type="tel" id="phone" name="phone" maxlength="20">
-      </p>
-
-      <p>
-        <label for="dob">Date of birth:</label><br>
-        <!-- This line tells the applicant why some dates are blocked -->
-        <small>You must be 18 or older to apply.</small><br>
-        <input type="date" id="dob" name="date_of_birth" required min="1940-01-01" max="2008-11-24">
-      </p>
-
-      <!-- Radio buttons share the same name, so only one can be picked -->
-      <fieldset>
-        <legend>Gender</legend>
-
-        <input type="radio" id="gender-female" name="gender" value="female" required>
-        <label for="gender-female">Female</label><br>
-
-        <input type="radio" id="gender-male" name="gender" value="male">
-        <label for="gender-male">Male</label><br>
-      </fieldset>
-    </fieldset>
-
-    <br>
-
-    <!-- ===== GROUP 2: Development information ===== -->
-    <fieldset>
-      <legend>Development information</legend>
+    <!-- POST keeps personal data out of the web address. -->
+    <!-- No backend yet, so the action is a placeholder path. -->
+    <form action="/mentorship/apply" method="post">
 
       <fieldset>
-        <legend>Current experience level</legend>
+        <legend>Personal information</legend>
 
-        <input type="radio" id="level-beginner" name="experience_level" value="beginner" required>
-        <label for="level-beginner">Beginner</label><br>
+        <p>
+          <label for="full-name">Full name</label>
+          <input type="text" id="full-name" name="full_name"
+            minlength="2" maxlength="80" required>
+        </p>
 
-        <input type="radio" id="level-intermediate" name="experience_level" value="intermediate">
-        <label for="level-intermediate">Intermediate</label><br>
+        <p>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email"
+            maxlength="100" required>
+        </p>
 
-        <input type="radio" id="level-advanced" name="experience_level" value="advanced">
-        <label for="level-advanced">Advanced</label>
+        <p>
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone"
+            minlength="7" maxlength="15" required>
+        </p>
+
+        <p>
+          <label for="birth-date">Date of birth</label>
+          <input type="date" id="birth-date" name="birth_date"
+            min="1940-01-01" max="2010-12-31" required>
+        </p>
+
+        <fieldset>
+          <legend>Gender</legend>
+          <p>
+            <input type="radio" id="gender-female" name="gender"
+              value="female" required>
+            <label for="gender-female">Female</label>
+          </p>
+          <p>
+            <input type="radio" id="gender-male" name="gender"
+              value="male">
+            <label for="gender-male">Male</label>
+          </p>
+          <p>
+            <input type="radio" id="gender-none" name="gender"
+              value="prefer-not-to-say">
+            <label for="gender-none">Prefer not to say</label>
+          </p>
+        </fieldset>
       </fieldset>
 
-      <!-- Checkboxes let you pick more than one -->
       <fieldset>
-        <legend>Areas of interest</legend>
+        <legend>Development information</legend>
 
-        <input type="checkbox" id="interest-web" name="interests" value="web">
-        <label for="interest-web">Web development</label><br>
+        <p>
+          <label for="experience">Current experience level</label>
+          <select id="experience" name="experience" required>
+            <option value="">Choose one</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </p>
 
-        <input type="checkbox" id="interest-mobile" name="interests" value="mobile">
-        <label for="interest-mobile">Mobile apps</label><br>
+        <fieldset>
+          <legend>Areas of interest</legend>
+          <p>
+            <input type="checkbox" id="interest-web" name="interests"
+              value="web">
+            <label for="interest-web">Web development</label>
+          </p>
+          <p>
+            <input type="checkbox" id="interest-data" name="interests"
+              value="data">
+            <label for="interest-data">Data and AI</label>
+          </p>
+          <p>
+            <input type="checkbox" id="interest-mobile" name="interests"
+              value="mobile">
+            <label for="interest-mobile">Mobile apps</label>
+          </p>
+          <p>
+            <input type="checkbox" id="interest-design" name="interests"
+              value="design">
+            <label for="interest-design">UI design</label>
+          </p>
+        </fieldset>
 
-        <input type="checkbox" id="interest-ai" name="interests" value="ai">
-        <label for="interest-ai">AI and data</label>
+        <fieldset>
+          <legend>Preferred learning track</legend>
+          <p>
+            <input type="radio" id="track-frontend" name="track"
+              value="frontend" required>
+            <label for="track-frontend">Front-end</label>
+          </p>
+          <p>
+            <input type="radio" id="track-backend" name="track"
+              value="backend">
+            <label for="track-backend">Back-end</label>
+          </p>
+          <p>
+            <input type="radio" id="track-fullstack" name="track"
+              value="fullstack">
+            <label for="track-fullstack">Full-stack</label>
+          </p>
+        </fieldset>
+
+        <p>
+          <label for="github-url">GitHub profile URL</label>
+          <input type="url" id="github-url" name="github_url"
+            maxlength="100" pattern="https://github\.com/.+"
+            title="Example: https://github.com/your-username">
+        </p>
+
+        <p>
+          <label for="reason">Why do you want to join?</label>
+        </p>
+        <p>
+          <textarea id="reason" name="reason" rows="5" cols="40"
+            minlength="30" maxlength="500" required></textarea>
+        </p>
       </fieldset>
 
-      <!-- select = dropdown list, option = each item in it -->
-      <p>
-        <label for="learning-track">Preferred learning track:</label><br>
-        <select id="learning-track" name="learning_track" required>
-          <option value="">Choose one</option>
-          <option value="frontend">Front-end</option>
-          <option value="backend">Back-end</option>
-          <option value="fullstack">Full-stack</option>
-        </select>
-      </p>
-
-      <p>
-        <label for="github">GitHub profile URL (optional):</label><br>
-        <input type="url" id="github" name="github_url" maxlength="200">
-      </p>
-
-      <!-- textarea = a big box for longer text -->
-      <p>
-        <label for="reason">Why do you want to join?</label><br>
-        <textarea id="reason" name="reason" rows="5" cols="40" required minlength="30" maxlength="500"></textarea>
-      </p>
-    </fieldset>
-
-    <br>
-
-    <!-- ===== GROUP 3: Availability ===== -->
-    <fieldset>
-      <legend>Availability</legend>
-
-      <p>
-        <label for="hours">Hours per week you can give (2 to 40):</label><br>
-        <input type="number" id="hours" name="hours_per_week" required min="2" max="40">
-      </p>
-
-      <!-- A fieldset inside a fieldset groups the related checkboxes -->
       <fieldset>
-        <legend>Times you are usually free</legend>
+        <legend>Other</legend>
 
-        <input type="checkbox" id="time-weekday" name="free_times" value="weekday-evening">
-        <label for="time-weekday">Weekday evenings</label><br>
+        <p>
+          <label for="availability">Availability</label>
+          <select id="availability" name="availability" required>
+            <option value="">Choose one</option>
+            <option value="weekday-evenings">Weekday evenings</option>
+            <option value="weekends">Weekends</option>
+            <option value="both">Weekday evenings and weekends</option>
+          </select>
+        </p>
 
-        <input type="checkbox" id="time-weekend" name="free_times" value="weekend">
-        <label for="time-weekend">Weekends</label>
+        <p>
+          <input type="checkbox" id="agree-rules" name="agree_rules"
+            value="yes" required>
+          <label for="agree-rules">
+            I agree to the mentorship rules
+          </label>
+        </p>
       </fieldset>
-    </fieldset>
 
-    <br>
-
-    <!-- ===== GROUP 4: Agreement ===== -->
-    <fieldset>
-      <legend>Mentorship rules</legend>
-
-      <input type="checkbox" id="agree" name="agree_to_rules" value="agreed" required>
-      <label for="agree">I agree to the mentorship rules</label>
-    </fieldset>
-
-    <br>
-
-    <!-- A real submit button -->
-    <button type="submit">Submit application</button>
-
-  </form>
-
+      <p>
+        <button type="submit">Submit application</button>
+      </p>
+    </form>
+  </main>
 </body>
 </html>
